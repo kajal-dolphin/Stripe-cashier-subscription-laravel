@@ -17,8 +17,8 @@ class PlanSeeder extends Seeder
             [
                 'name' => 'Basic',
                 'slug' => 'basic',
-                'stripe_plan' => 'price_1P8Gl5SErWPImwflEuGOBdOz',
-                'price' => 10,
+                'stripe_plan' => 'price_1P8freSErWPImwflEB2GyJMS',
+                'price' => 1,
                 'description' => 'This is a basic plan for customer'
             ],
             [
@@ -27,6 +27,13 @@ class PlanSeeder extends Seeder
                 'stripe_plan' => 'price_1P8GlSSErWPImwflHrS93Bo7',
                 'price' => 100,
                 'description' => 'This is a premium plan for customer'
+            ],
+            [
+                'name' => 'Bussiness Plan',
+                'slug' => 'bussiness plan',
+                'stripe_plan' => 'price_1P8fuHSErWPImwflv9cqIMNz',
+                'price' => 500,
+                'description' => 'This is a bussiness plan for customer'
             ]
         ];
 

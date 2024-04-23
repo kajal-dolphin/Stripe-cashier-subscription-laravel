@@ -27,4 +27,5 @@ Route::middleware("auth")->group(function () {
     Route::get('plans', [PlanController::class, 'index']);
     Route::get('plans/{plan}', [PlanController::class, 'show'])->name("plans.show");
     Route::post('subscription', [PlanController::class, 'subscription'])->name("subscription.create");
+    Route::get('cancel-subscription/{stripe_plan}', [PlanController::class, 'cancelSubscription'])->name("subscription.cancel");
 });

@@ -12,23 +12,24 @@
                     <div class="row">
                         @foreach($plans as $plan)
 
-                            <div class="col-md-6">
-                                <div class="card mb-3">
-                                  <div class="card-header">
-                                        ${{ $plan->price }}/Mo
-                                  </div>
+                        <div class="col-md-6">
+                            <div class="card mb-3">
+                                <div class="card-header">
+                                    ${{ $plan->price }}/Mo
+                                </div>
 
-                                  <div class="card-body">
+                                <div class="card-body">
 
                                     <h5 class="card-title">{{ $plan->name }}</h5>
 
-                                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                    <p class="card-text">{{ $plan->description }}</p>
 
-                                    <a href="{{ route('plans.show', $plan->slug) }}" class="btn btn-primary pull-right">Choose</a>
+                                    <a href="{{ route('plans.show', $plan->slug) }}" class="btn btn-primary pull-right{{ in_array($plan->stripe_plan, $alreadySubscribe) ? ' disabled' : '' }}">Choose</a>
+                                    <a href="{{ route('subscription.cancel',$plan->name) }}" class="btn btn-danger pull-right{{ in_array($plan->stripe_plan, $alreadySubscribe) ? '' : ' disabled ' }}">Cancel</a>
 
-                                  </div>
                                 </div>
                             </div>
+                        </div>
                         @endforeach
                     </div>
 
