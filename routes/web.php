@@ -21,11 +21,12 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::middleware("auth")->group(function () {
-    Route::get('plans', [PlanController::class, 'index']);
+    // Route::get('plans', [PlanController::class, 'index']);
+    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     Route::get('plans/{plan}', [PlanController::class, 'show'])->name("plans.show");
     Route::post('subscription', [PlanController::class, 'subscription'])->name("subscription.create");
     Route::get('cancel-subscription/{stripe_plan}', [PlanController::class, 'cancelSubscription'])->name("subscription.cancel");
+    Route::get('resume-subscription/{user_id}/{stripe_plan}', [PlanController::class, 'resumeSubscription'])->name("subscription.resume");
 });

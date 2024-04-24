@@ -29,7 +29,6 @@ class ScheduleSubscriptionReminders extends Command
      */
     public function handle()
     {
-        dd("here");
         $test = Subscription::where('ends_at', '!=', NULL)->get();
         foreach ($test as $t) {
             $currentDate = Carbon::now();
@@ -42,7 +41,7 @@ class ScheduleSubscriptionReminders extends Command
 
             if($days <= 5)
             {
-                dispatch(new SubscriptionReminderJob($email));
+                dispatch(new SubscriptionReminderJob($email, $user->name, $user_id, $t->type, $t->ends_at ));
             }
         }
     }

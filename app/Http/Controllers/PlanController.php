@@ -13,13 +13,13 @@ use Laravel\Cashier\Exceptions\IncompletePayment;
 
 class PlanController extends Controller
 {
-    public function index()
-    {
-        $plans = Plan::get();
-        $alreadySubscribe = Subscription::where('ends_at', NULL)->pluck('stripe_price')->toArray();
+    // public function index()
+    // {
+    //     $plans = Plan::get();
+    //     $alreadySubscribe = Subscription::where('ends_at', NULL)->pluck('stripe_price')->toArray();
 
-        return view("plans", compact("plans", "alreadySubscribe"));
-    }
+    //     return view("plans", compact("plans", "alreadySubscribe"));
+    // }
 
     public function show(Plan $plan, Request $request)
     {
@@ -66,6 +66,18 @@ class PlanController extends Controller
             $user->subscription($stripe_plan)->cancel();
 
             return redirect()->route('home')->with('success', 'Subscription Cancel successfully!');
+        } catch (\Exception $e) {
+            Log::info($e->getMessage());
+        }
+    }
+
+    public function resumeSubscription($user_id, $stripe_plan)
+    {
+        try {
+            $user = User::where('id',$user_id)->first();
+            $user->subscription($stripe_plan)->resume();
+
+            return redirect()->route('home')->with('success', 'Subscription Resume successfully!');
         } catch (\Exception $e) {
             Log::info($e->getMessage());
         }
