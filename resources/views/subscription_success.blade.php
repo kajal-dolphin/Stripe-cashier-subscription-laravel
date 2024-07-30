@@ -12,6 +12,9 @@
                         Subscription purchase successfully!
                     </div>
 
+
+
+
                 </div>
             </div>
         </div>
