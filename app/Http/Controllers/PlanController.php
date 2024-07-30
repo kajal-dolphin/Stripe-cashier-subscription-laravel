@@ -52,8 +52,6 @@ class PlanController extends Controller
 
             return redirect()->route('home')->with('success', 'Subscription created successfully!');
         } catch (IncompletePayment $exception) {
-
-
             return redirect()->route(
                 'cashier.payment',
                 [$exception->payment->id, 'redirect' => route('home')]
