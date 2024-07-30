@@ -8,6 +8,11 @@
 
                 <div class="card-body">
 
+
+
+
+
+
                     <div class="alert alert-success">
                         Subscription purchase successfully fdasdasfd!
                     </div>
